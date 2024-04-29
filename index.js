@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { Shape, Triangle, Circle, Square } = require('./lib/shapes');
 
+//Array of questions to prompt user with inquirer
 const questions = [
     {
         type: 'input',
@@ -31,6 +32,7 @@ const questions = [
     },
 ];
 
+//Initiate inquirer prompts and save user input
 inquirer.prompt(questions).then((answers) => {
     const { shape, shapeColor, logoText, textColor } = answers;
     let selectedShape;
@@ -50,13 +52,16 @@ inquirer.prompt(questions).then((answers) => {
             return;
     }
 
+    //Render SVG image
     const svgContent = selectedShape.render();
     const svgTemplate = `<svg width="300" height="200">
         ${svgContent}
-        <text x="150" y="20" fill="${textColor}" text-anchor="middle">${logoText}</text>
+        <text x="150" y="110" fill="${textColor}" text-anchor="middle" font-size="40">${logoText}</text>
     </svg>`;
 
-    const filePath = path.join(__dirname, 'examples', 'newImage.svg');
+    const timestamp = new Date().getTime();
+    const fileName = `newImage_${timestamp}.svg`;
+    const filePath = path.join(__dirname, 'examples', fileName);
 
     fs.writeFile(filePath, svgTemplate, (err) => {
         if (err) {
