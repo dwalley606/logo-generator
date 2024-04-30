@@ -1,0 +1,4 @@
+<svg width="300" height="200">
+        <polygon points="150,30.7179676972449 90,134.64101615137756 210,134.64101615137756" fill="black" />
+        <text x="150" y="110" fill="green" text-anchor="middle" font-size="40">RWD</text>
+    </svg>
